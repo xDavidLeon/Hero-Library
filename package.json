@@ -1,0 +1,26 @@
+{
+  "name": "com.xdavidleon.herolib",
+  "version": "1.0.0",
+  "displayName": "Hero Library",
+  "description": "Multi-purpose Unity library that extends functionality.",
+  "unity": "2019.1",
+  "unityRelease": "0b5",
+  "documentationUrl": "https://github.com/xDavidLeon/HeroLib",
+  "changelogUrl": "https://github.com/xDavidLeon/HeroLib",
+  "licensesUrl": "https://github.com/xDavidLeon/HeroLib",
+  "dependencies": {},
+  "hideInEditor": false,
+  "keywords": [
+    "unity",
+    "library",
+    "utils",
+    "hero",
+    "lib",
+    "extension"
+  ],
+  "author": {
+    "name": "David Leon",
+    "email": "xdavidleon@gmail.com",
+    "url": "https://twitter.com/xdavidleon"
+  }
+}
