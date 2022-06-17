@@ -297,6 +297,19 @@ namespace HeroLib
             Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
             return worldPosition;
         }
+        
+        public static Vector3 GetMouseWorldPositionRaycasted(Camera worldCamera, LayerMask mouseColliderLayerMask)
+        {
+            Ray ray = worldCamera.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, mouseColliderLayerMask))
+            {
+                return raycastHit.point;
+            }
+            else
+            {
+                return Vector3.zero;
+            }
+        }
 
         // Is Mouse over a UI Element? Used for ignoring World clicks through UI
         public static bool IsPointerOverUI()
