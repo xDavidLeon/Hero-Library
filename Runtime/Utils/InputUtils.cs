@@ -28,7 +28,7 @@ namespace HeroLib
 
                 if (dragging)
                 {
-                    onMouseDragging(UIUtils.GetMouseWorldPosition());
+                    onMouseDragging(UIExt.GetMouseWorldPosition());
                 }
 
                 return false;
@@ -50,7 +50,7 @@ namespace HeroLib
             {
                 if (state == 1)
                 {
-                    if (onWaitingForToPosition != null) onWaitingForToPosition(from, UIUtils.GetMouseWorldPosition());
+                    if (onWaitingForToPosition != null) onWaitingForToPosition(from, UIExt.GetMouseWorldPosition());
                 }
 
                 if (state == 1 && Input.GetMouseButtonDown(cancelMouseButton))
@@ -59,17 +59,17 @@ namespace HeroLib
                     state = 0;
                 }
 
-                if (Input.GetMouseButtonDown(mouseButton) && !UIUtils.IsPointerOverUI())
+                if (Input.GetMouseButtonDown(mouseButton) && !UIExt.IsPointerOverUI())
                 {
                     if (state == 0)
                     {
                         state = 1;
-                        from = UIUtils.GetMouseWorldPosition();
+                        from = UIExt.GetMouseWorldPosition();
                     }
                     else
                     {
                         state = 0;
-                        onMouseClickFromTo(from, UIUtils.GetMouseWorldPosition());
+                        onMouseClickFromTo(from, UIExt.GetMouseWorldPosition());
                     }
                 }
 
@@ -88,7 +88,7 @@ namespace HeroLib
             {
                 if (Input.GetMouseButtonDown(mouseButton))
                 {
-                    onMouseClick(UIUtils.GetWorldPositionFromUI());
+                    onMouseClick(UIExt.GetWorldPositionFromUI());
                 }
 
                 return false;

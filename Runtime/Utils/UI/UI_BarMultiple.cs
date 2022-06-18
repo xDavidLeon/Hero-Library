@@ -61,14 +61,14 @@ namespace HeroLib
 
         private void SetupOutline(Outline outline, Vector2 size)
         {
-            UIUtils.DrawSprite(outline.color, gameObject.transform, Vector2.zero,
+            UIExt.DrawSprite(outline.color, gameObject.transform, Vector2.zero,
                 size + new Vector2(outline.size, outline.size), "Outline");
         }
 
         private RectTransform SetupBar(Color barColor)
         {
             RectTransform bar =
-                UIUtils.DrawSprite(barColor, gameObject.transform, Vector2.zero, Vector2.zero, "Bar");
+                UIExt.DrawSprite(barColor, gameObject.transform, Vector2.zero, Vector2.zero, "Bar");
             bar.anchorMin = new Vector2(0, 0);
             bar.anchorMax = new Vector2(0, 1f);
             bar.pivot = new Vector2(0, .5f);

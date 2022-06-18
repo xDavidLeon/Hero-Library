@@ -4,7 +4,7 @@ namespace HeroLib
 	using UnityEngine;
 	using UnityEngine.SceneManagement;
 
-	public static class SceneExt
+	public static partial class SceneExt
 	{
 		// PUBLIC METHODS
 

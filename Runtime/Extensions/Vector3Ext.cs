@@ -7,7 +7,7 @@ namespace HeroLib
     /// <summary>
     /// Extension for the standard Vector3 that allows us to add functions
     /// </summary>
-    public static class Vector3Ext
+    public static partial class Vector3Ext
     {
         /// <summary>
         /// Static constructor
@@ -909,6 +909,87 @@ namespace HeroLib
             return false;
         }
 
+        
+        // Generate random normalized direction
+        public static Vector3 GetRandomDir()
+        {
+            return new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(-1f, 1f)).normalized;
+        }
+
+        public static Vector3 GetVectorFromAngle(int angle)
+        {
+            // angle = 0 -> 360
+            float angleRad = angle * (Mathf.PI / 180f);
+            return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+        }
+
+        public static Vector3 GetVectorFromAngle(float angle)
+        {
+            // angle = 0 -> 360
+            float angleRad = angle * (Mathf.PI / 180f);
+            return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+        }
+
+        public static Vector3 GetVectorFromAngleInt(int angle)
+        {
+            // angle = 0 -> 360
+            float angleRad = angle * (Mathf.PI / 180f);
+            return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+        }
+
+        public static float GetAngleFromVectorFloat(Vector3 dir)
+        {
+            dir = dir.normalized;
+            float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            if (n < 0) n += 360;
+
+            return n;
+        }
+
+        public static float GetAngleFromVectorFloat3D(Vector3 dir)
+        {
+            dir = dir.normalized;
+            float n = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+            if (n < 0) n += 360;
+
+            return n;
+        }
+
+        public static int GetAngleFromVector(Vector3 dir)
+        {
+            dir = dir.normalized;
+            float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            if (n < 0) n += 360;
+            int angle = Mathf.RoundToInt(n);
+
+            return angle;
+        }
+
+        public static int GetAngleFromVector180(Vector3 dir)
+        {
+            dir = dir.normalized;
+            float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            int angle = Mathf.RoundToInt(n);
+
+            return angle;
+        }
+
+        public static Vector3 ApplyRotationToVector(Vector3 vec, Vector3 vecRotation)
+        {
+            return ApplyRotationToVector(vec, GetAngleFromVectorFloat(vecRotation));
+        }
+
+        public static Vector3 ApplyRotationToVector(Vector3 vec, float angle)
+        {
+            return Quaternion.Euler(0, 0, angle) * vec;
+        }
+
+        public static Vector3 ApplyRotationToVectorXZ(Vector3 vec, float angle)
+        {
+            return Quaternion.Euler(0, angle, 0) * vec;
+        }
+
+        
         #region Vector2
 
         /// <summary>

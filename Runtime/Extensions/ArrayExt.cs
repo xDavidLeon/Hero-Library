@@ -6,7 +6,7 @@ namespace HeroLib
     /// <summary>
     /// Provides extensions to arrays
     /// </summary>
-    public static class ArrayExt
+    public static partial class ArrayExt
     {
         public static void Init<T>(this List<T> list)
         {

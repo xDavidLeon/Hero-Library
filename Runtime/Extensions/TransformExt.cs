@@ -6,7 +6,7 @@ namespace HeroLib
     /// <summary>
     /// Extension for the standard Transform that allows us to add functions
     /// </summary>
-    public static class TransformExt
+    public static partial class TransformExt
     {
         /// <summary>
         /// Recursively searches for a bone given the name and returns it if found
@@ -129,6 +129,34 @@ namespace HeroLib
 				Debug.LogWarning("Auto-assigning " + comp.GetType().ToString() + " in " + transform.name + "! Try to assign it manually!", transform);
 
 			return comp;
+		}
+		
+		/// <summary>
+		/// Determines if the "descendant" transform is a child (or grand child)
+		/// of the "parent" transform.
+		/// </summary>
+		/// <param name="rParent"></param>
+		/// <param name="rTest"></param>
+		/// <returns></returns>
+		public static bool IsDescendant(Transform rParent, Transform rDescendant)
+		{
+			if (rParent == null)
+			{
+				return false;
+			}
+
+			Transform lDescendantParent = rDescendant;
+			while (lDescendantParent != null)
+			{
+				if (lDescendantParent == rParent)
+				{
+					return true;
+				}
+
+				lDescendantParent = lDescendantParent.parent;
+			}
+
+			return false;
 		}
 	}
 }

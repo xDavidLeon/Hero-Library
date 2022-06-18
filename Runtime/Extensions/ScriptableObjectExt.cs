@@ -6,9 +6,9 @@ using UnityEditor;
 
 namespace HeroLib
 {
-    public static class ScriptableObjectExt {
+    public static partial class ScriptableObjectExt {
 
-	    public static void Save(this ScriptableObject thisSO)
+	    public static void SafeSave(this ScriptableObject thisSO)
         {
             AssetDatabase.Refresh();
             EditorUtility.SetDirty(thisSO);

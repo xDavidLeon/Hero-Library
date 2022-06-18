@@ -5,7 +5,7 @@ namespace HeroLib
     /// <summary>
     /// Provides functions for specialized GameObject solutions
     /// </summary>
-    public static class CameraExt
+    public static partial class CameraExt
     {
         private static float _screenWidthHalf;
         private static float _screenHeightHalf;

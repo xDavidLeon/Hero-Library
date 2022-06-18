@@ -5,7 +5,7 @@ namespace HeroLib
 	/// <summary>
 	/// Provides extensions to Physics
 	/// </summary>
-	public static class PhysicsExt
+	public static partial class PhysicsExt
 	{
 		public static bool VisibleFrom(this Collider me, Vector3 position)
 		{

@@ -1,12 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace HeroLib
 {
     /// <summary>
     /// Set of shape-based functions that allow us to evaluate and manipulate shapes
     /// </summary>
-    public class GeometryExt
+    public static partial class GeometryExt
     {
         // Allows for floating point error
         public const float EPSILON = 0.0001f;
@@ -30,6 +29,11 @@ namespace HeroLib
         /// Directions used for finding the closes point on terrain
         /// </summary>
         public static Vector3[] SphericalDirections = null;
+
+        /// <summary>
+        /// Used when we need to return an empty vector
+        /// </summary>
+        public static Vector3 Null = new Vector3(float.MinValue, float.MinValue, float.MinValue);
 
         /// <summary>
         /// Static constructor
@@ -69,12 +73,12 @@ namespace HeroLib
             {
                 if (((1 << rCollider.gameObject.layer) & rCollisionLayers) == 0)
                 {
-                    return Vector3Ext.Null;
+                    return Null;
                 }
             }
 
             // Find the contact point
-            Vector3 lContactPoint = Vector3Ext.Null;
+            Vector3 lContactPoint = Null;
 
             // Use the box collider
             if (rCollider is BoxCollider)
@@ -158,12 +162,12 @@ namespace HeroLib
             {
                 if (((1 << rCollider.gameObject.layer) & rCollisionLayers) == 0)
                 {
-                    return Vector3Ext.Null;
+                    return Null;
                 }
             }
 
             // Find the contact point
-            Vector3 lContactPoint = Vector3Ext.Null;
+            Vector3 lContactPoint = Null;
 
             // Use the box collider
             if (rCollider is BoxCollider)
@@ -695,7 +699,7 @@ namespace HeroLib
             }
 
             // Default value
-            return Vector3Ext.Null;
+            return Null;
         }
 
         /// <summary>
@@ -772,7 +776,7 @@ namespace HeroLib
                 return lHitInfo.point;
             }
 
-            return Vector3Ext.Null;
+            return Null;
         }
 
         /// <summary>
@@ -1547,7 +1551,7 @@ namespace HeroLib
                 Vector3 lPoint = rStart + (lLineDirection * lStepped);
                 Vector3 lColliderPoint = ClosestPoint(lPoint, rRadius, rCollider, rCollisionLayers);
 
-                if (lColliderPoint != Vector3Ext.Null)
+                if (lColliderPoint != Null)
                 {
                     float lColliderPointDistance = (lColliderPoint - lPoint).sqrMagnitude;
                     if (lColliderPointDistance < lClosestDistance)
@@ -1611,7 +1615,7 @@ namespace HeroLib
                 Vector3 lPoint = rStart + (lLineDirection * lStepped);
                 Vector3 lColliderPoint = ClosestPoint(lPoint, rMovement, rRadius, rCollider, rCollisionLayers);
 
-                if (lColliderPoint != Vector3Ext.Null)
+                if (lColliderPoint != Null)
                 {
                     float lColliderPointDistance = (lColliderPoint - lPoint).sqrMagnitude;
                     if (lColliderPointDistance < lClosestDistance)
@@ -1714,7 +1718,7 @@ namespace HeroLib
                             rCollider.sharedMesh);
                     }
 
-                    if (lColliderPoint != Vector3Ext.Null)
+                    if (lColliderPoint != Null)
                     {
                         float lColliderPointDistance = (lColliderPoint - lPoint).sqrMagnitude;
                         if (lColliderPointDistance < lClosestDistance)
@@ -2362,34 +2366,6 @@ namespace HeroLib
             return false;
         }
 
-        /// <summary>
-        /// Determines if the "descendant" transform is a child (or grand child)
-        /// of the "parent" transform.
-        /// </summary>
-        /// <param name="rParent"></param>
-        /// <param name="rTest"></param>
-        /// <returns></returns>
-        private static bool IsDescendant(Transform rParent, Transform rDescendant)
-        {
-            if (rParent == null)
-            {
-                return false;
-            }
-
-            Transform lDescendantParent = rDescendant;
-            while (lDescendantParent != null)
-            {
-                if (lDescendantParent == rParent)
-                {
-                    return true;
-                }
-
-                lDescendantParent = lDescendantParent.parent;
-            }
-
-            return false;
-        }
-
         private static void GetLineDistanceFromBoxFace(ref Vector3 rBoxExtents, ref Vector3 rBoxPoint,
             ref Vector3 rBoxDirection, ref Vector3 rExtentToPoint, int rIndex0, int rIndex1, int rIndex2,
             ref float mLineDistance)
@@ -2696,6 +2672,27 @@ namespace HeroLib
 
             //rColliderPoint = lClosestPoint;
             //rLinePoint = ClosestPoint(rColliderPoint, rStart, rEnd);
+        }
+        
+        /// <summary>
+        /// Determines if the "descendant" transform is a child (or grand child)
+        /// of the "parent" transform.
+        /// </summary>
+        /// <param name="rParent"></param>
+        /// <param name="rTest"></param>
+        /// <returns></returns>
+        private static bool IsDescendant(Transform rParent, Transform rDescendant)
+        {
+            if (rParent == null) { return false; }
+
+            Transform lDescendantParent = rDescendant;
+            while (lDescendantParent != null)
+            {
+                if (lDescendantParent == rParent) { return true; }
+                lDescendantParent = lDescendantParent.parent;
+            }
+
+            return false;
         }
 
         #endregion

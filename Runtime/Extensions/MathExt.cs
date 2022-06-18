@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace HeroLib
 {
@@ -13,8 +15,32 @@ namespace HeroLib
         }
     }
 
-    public static partial class ByteExt
+    public static partial class MathExt
     {
+        // Returns 00-FF, value 0->255
+        public static string Dec_to_Hex(int value)
+        {
+            return value.ToString("X2");
+        }
+
+        // Returns 0-255
+        public static int Hex_to_Dec(string hex)
+        {
+            return Convert.ToInt32(hex, 16);
+        }
+
+        // Returns a hex string based on a number between 0->1
+        public static string Dec01_to_Hex(float value)
+        {
+            return Dec_to_Hex((int)Mathf.Round(value * 255f));
+        }
+
+        // Returns a float between 0->1
+        public static float Hex_to_Dec01(string hex)
+        {
+            return Hex_to_Dec(hex) / 255f;
+        }
+
         public static float FloatInterpolate(this float current, float desired, float speed)
         {
             if (current == desired)

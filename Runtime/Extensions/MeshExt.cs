@@ -8,7 +8,7 @@ namespace HeroLib
     /// <summary>
     /// Provides functions that are specific to unity meshes
     /// </summary>
-    public class MeshExt
+    public static partial class MeshExt
     {
         /// <summary>
         /// Stores mesh data that has been processed to speed up the closest point search

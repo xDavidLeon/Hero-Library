@@ -37,10 +37,10 @@ namespace HeroLib {
             transform.localPosition = localPosition;
         }
         private void SetupOutline(Outline outline, Vector3 localScale, int sortingOrder) {
-            UIUtils.CreateWorldSprite(transform, "Outline", UIUtils.DefaultUISprite, new Vector3(0,0), localScale + new Vector3(outline.size, outline.size), sortingOrder, outline.color);
+            UIExt.CreateWorldSprite(transform, "Outline", HeroAssets.i.s_White, new Vector3(0,0), localScale + new Vector3(outline.size, outline.size), sortingOrder, outline.color);
         }
         private void SetupBackground(Color backgroundColor, Vector3 localScale, int sortingOrder) {
-            background = UIUtils.CreateWorldSprite(transform, "Background", UIUtils.DefaultUISprite, new Vector3(0,0), localScale, sortingOrder, backgroundColor).transform;
+            background = UIExt.CreateWorldSprite(transform, "Background", HeroAssets.i.s_White, new Vector3(0,0), localScale, sortingOrder, backgroundColor).transform;
         }
         private void SetupBar(Color barColor, Vector3 localScale, int sortingOrder) {
             GameObject barGO = new GameObject("Bar");
@@ -48,7 +48,7 @@ namespace HeroLib {
             bar.SetParent(transform);
             bar.localPosition = new Vector3(-localScale.x / 2f, 0, 0);
             bar.localScale = new Vector3(1,1,1);
-            Transform barIn = UIUtils.CreateWorldSprite(bar, "BarIn", UIUtils.DefaultUISprite, new Vector3(localScale.x / 2f, 0), localScale, sortingOrder, barColor).transform;
+            Transform barIn = UIExt.CreateWorldSprite(bar, "BarIn", HeroAssets.i.s_White, new Vector3(localScale.x / 2f, 0), localScale, sortingOrder, barColor).transform;
         }
         public void SetRotation(float rotation) {
             transform.localEulerAngles = new Vector3(0, 0, rotation);

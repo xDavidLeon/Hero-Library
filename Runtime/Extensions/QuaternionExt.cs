@@ -19,7 +19,7 @@ namespace HeroLib
     /// 
     ///     
     /// </summary>
-    public static class QuaternionExt
+    public static partial class QuaternionExt
     {
         /// <summary>
         /// Value that identifies an inequality

@@ -5,7 +5,7 @@ namespace HeroLib
     /// <summary>
     /// Extension for the standard Vector3 that allows us to add functions
     /// </summary>
-    public static class Matrix4x4Ext
+    public static partial class Matrix4x4Ext
     {
         /// <summary>
         /// Return the position of the matrix

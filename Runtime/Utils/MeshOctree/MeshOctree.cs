@@ -4,7 +4,7 @@ namespace HeroLib
 {
     /// <summary>
     /// High level container for the MeshOctreeNode. It's not
-    /// required, but provides some convienience.
+    /// required, but provides some convenience.
     /// </summary>
     public class MeshOctree
     {

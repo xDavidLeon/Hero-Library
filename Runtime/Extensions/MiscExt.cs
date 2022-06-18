@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace HeroLib
 {
-    public static class MiscExt
+    public static partial class MiscExt
     {
         /// <summary>
         /// Evaluate a non-normalized value (time) on a Normalized AnimationCurve given a min and max

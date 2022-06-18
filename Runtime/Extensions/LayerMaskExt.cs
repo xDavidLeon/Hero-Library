@@ -6,7 +6,7 @@ namespace HeroLib
     /// <summary>
     /// Provides functions for specialized LayerMask operations
     /// </summary>
-    public static class LayerMaskExt
+    public static partial class LayerMaskExt
     {
         public static LayerMask Create(params string[] layerNames)
         {

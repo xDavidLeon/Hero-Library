@@ -10,7 +10,7 @@ namespace HeroLib
     {
         private static Transform GetCanvasTransform()
         {
-            return UIUtils.GetCanvasTransform();
+            return UIExt.GetCanvasTransform();
         }
 
         public struct Icon
@@ -66,20 +66,20 @@ namespace HeroLib
                 tmp = tmp.Substring(tmp.IndexOf(iconChar + iconNumber) + (iconChar + iconNumber).Length);
                 if (untilTmp.Trim() != "")
                 {
-                    Text uiText = UIUtils.DrawTextUI(untilTmp, transform, new Vector2(textPosition, 0), fontSize, font);
+                    Text uiText = UIExt.DrawTextUI(untilTmp, transform, new Vector2(textPosition, 0), fontSize, font);
                     textPosition += uiText.preferredWidth;
                 }
 
                 // Draw Icon
-                int iconIndex = UIUtils.Parse_Int(iconNumber, 0);
+                int iconIndex = UIExt.Parse_Int(iconNumber, 0);
                 Icon icon = iconArr[iconIndex];
-                UIUtils.DrawSprite(icon.sprite, transform, new Vector2(textPosition + icon.size.x / 2f, 0), icon.size);
+                UIExt.DrawSprite(icon.sprite, transform, new Vector2(textPosition + icon.size.x / 2f, 0), icon.size);
                 textPosition += icon.size.x;
             }
 
             if (tmp.Trim() != "")
             {
-                UIUtils.DrawTextUI(tmp, transform, new Vector2(textPosition, 0), fontSize, font);
+                UIExt.DrawTextUI(tmp, transform, new Vector2(textPosition, 0), fontSize, font);
             }
         }
 

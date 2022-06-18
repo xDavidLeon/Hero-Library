@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 
-public static class MonoBehaviorExt
+public static partial class MonoBehaviorExt
 {
     public static Coroutine<T> StartCoroutine<T>(this MonoBehaviour obj, IEnumerator coroutine)
     {

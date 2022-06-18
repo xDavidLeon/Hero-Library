@@ -3,7 +3,7 @@ using System.IO;
 
 namespace HeroLib
 {
-    public static class IOExt
+    public static partial class IOExt
     {
         public static byte[] FileToByteArray(string fileName)
         {

@@ -16,7 +16,7 @@ namespace HeroLib
 
         public static World_Sprite CreateDebugButton(Vector3 position, System.Action ClickFunc)
         {
-            World_Sprite worldSprite = new World_Sprite(null, position, new Vector3(10, 10), UIUtils.DefaultUISprite,
+            World_Sprite worldSprite = new World_Sprite(null, position, new Vector3(10, 10), HeroAssets.i.s_White,
                 Color.green, sortingOrderDefault);
             worldSprite.AddButton(ClickFunc, null, null);
             return worldSprite;
@@ -25,7 +25,7 @@ namespace HeroLib
         public static World_Sprite CreateDebugButton(Transform parent, Vector3 localPosition, System.Action ClickFunc)
         {
             World_Sprite worldSprite = new World_Sprite(parent, localPosition, new Vector3(10, 10),
-                UIUtils.DefaultUISprite,
+                HeroAssets.i.s_White,
                 Color.green, sortingOrderDefault);
             worldSprite.AddButton(ClickFunc, null, null);
             return worldSprite;
@@ -37,18 +37,18 @@ namespace HeroLib
             GameObject gameObject = new GameObject("DebugButton");
             gameObject.transform.parent = parent;
             gameObject.transform.localPosition = localPosition;
-            TextMesh textMesh = UIUtils.CreateWorldText(text, gameObject.transform, Vector3.zero, fontSize,
+            TextMesh textMesh = UIExt.CreateWorldText(text, gameObject.transform, Vector3.zero, fontSize,
                 Color.white, TextAnchor.MiddleCenter, TextAlignment.Center, 20000);
             Bounds rendererBounds = textMesh.GetComponent<MeshRenderer>().bounds;
 
-            Color color = UIUtils.GetColorFromString("00BA00FF");
+            Color color = ColorExt.GetColorFromString("00BA00FF");
             if (color.r >= 1f) color.r = .9f;
             if (color.g >= 1f) color.g = .9f;
             if (color.b >= 1f) color.b = .9f;
             Color colorOver = color * 1.1f; // button over color lighter
 
             World_Sprite worldSprite = new World_Sprite(gameObject.transform, Vector3.zero,
-                rendererBounds.size + new Vector3(paddingX, paddingY), UIUtils.DefaultUISprite, color,
+                rendererBounds.size + new Vector3(paddingX, paddingY), HeroAssets.i.s_White, color,
                 sortingOrderDefault);
             worldSprite.AddButton(ClickFunc, () => worldSprite.SetColor(colorOver), () => worldSprite.SetColor(color));
             return worldSprite;
@@ -78,17 +78,17 @@ namespace HeroLib
 
         public static World_Sprite Create(Vector3 worldPosition, Vector3 localScale, Color color)
         {
-            return new World_Sprite(null, worldPosition, localScale, UIUtils.DefaultUISprite, color, 0);
+            return new World_Sprite(null, worldPosition, localScale, HeroAssets.i.s_White, color, 0);
         }
 
         public static World_Sprite Create(Vector3 worldPosition, Vector3 localScale)
         {
-            return new World_Sprite(null, worldPosition, localScale, UIUtils.DefaultUISprite, Color.white, 0);
+            return new World_Sprite(null, worldPosition, localScale, HeroAssets.i.s_White, Color.white, 0);
         }
 
         public static World_Sprite Create(Vector3 worldPosition, Vector3 localScale, int sortingOrderOffset)
         {
-            return new World_Sprite(null, worldPosition, localScale, UIUtils.DefaultUISprite, Color.white,
+            return new World_Sprite(null, worldPosition, localScale, HeroAssets.i.s_White, Color.white,
                 sortingOrderOffset);
         }
 
@@ -102,7 +102,7 @@ namespace HeroLib
             int sortingOrderOffset)
         {
             int sortingOrder = GetSortingOrder(localPosition, sortingOrderOffset);
-            gameObject = UIUtils.CreateWorldSprite(parent, "Sprite", sprite, localPosition, localScale, sortingOrder,
+            gameObject = UIExt.CreateWorldSprite(parent, "Sprite", sprite, localPosition, localScale, sortingOrder,
                 color);
             transform = gameObject.transform;
             spriteRenderer = gameObject.GetComponent<SpriteRenderer>();

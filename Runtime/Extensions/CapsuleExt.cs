@@ -2,13 +2,13 @@
 
 namespace HeroLib
 {
-    public static class CapsuleExt {
+    public static partial class CapsuleExt {
 
         /// <summary>
         /// Get the center of the upper sphere of the capsule in world coordinates
         /// </summary>
         /// <param name="offset">a positive offset to be added in the direction of the capsule direction</param>
-	    public static Vector3 UppderCenter(this CapsuleCollider capsule, float offset = 0f)
+	    public static Vector3 UpperCenter(this CapsuleCollider capsule, float offset = 0f)
         {
             Vector3 axis = capsule.GetCapsuleDir();
             return capsule.bounds.center + (axis * ((capsule.height * 0.5f) - capsule.radius + offset));

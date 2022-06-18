@@ -5,7 +5,7 @@ namespace HeroLib
     /// <summary>
     /// Provides functions for specialized Renderer solutions
     /// </summary>
-    public static class RendererExt
+    public static partial class RendererExt
     {
         public static bool IsVisibleFrom(this Renderer renderer, Camera camera)
         {

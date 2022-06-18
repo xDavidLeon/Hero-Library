@@ -6,7 +6,7 @@ namespace HeroLib
     /// <summary>
     /// Provides extensions to Navigation systems
     /// </summary>
-    public static class NavExt
+    public static partial class NavExt
     {
         private static Vector3[] tempCorners = new Vector3[128];
         private static NavMeshPath navMeshPath = new NavMeshPath();

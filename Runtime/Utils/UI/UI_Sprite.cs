@@ -12,14 +12,14 @@ namespace HeroLib {
     public class UI_Sprite {
 
         private static Transform GetCanvasTransform() {
-            return UIUtils.GetCanvasTransform();
+            return UIExt.GetCanvasTransform();
         }
 
         public static UI_Sprite CreateDebugButton(Vector2 anchoredPosition, Vector2 size, Action ClickFunc) {
             return CreateDebugButton(anchoredPosition, size, ClickFunc, Color.green);
         }
         public static UI_Sprite CreateDebugButton(Vector2 anchoredPosition, Vector2 size, Action ClickFunc, Color color) {
-            UI_Sprite uiSprite = new UI_Sprite(GetCanvasTransform(), UIUtils.DefaultUISprite, anchoredPosition, size, color);
+            UI_Sprite uiSprite = new UI_Sprite(GetCanvasTransform(), HeroAssets.i.s_White, anchoredPosition, size, color);
             uiSprite.AddButton(ClickFunc, null, null);
             return uiSprite;
         }
@@ -44,7 +44,7 @@ namespace HeroLib {
             if (color.g >= 1f) color.g = .9f;
             if (color.b >= 1f) color.b = .9f;
             Color colorOver = color * 1.1f; // button over color lighter
-            UI_Sprite uiSprite = new UI_Sprite(GetCanvasTransform(), UIUtils.DefaultUISprite, anchoredPosition, size, color);
+            UI_Sprite uiSprite = new UI_Sprite(GetCanvasTransform(), HeroAssets.i.s_White, anchoredPosition, size, color);
             uiSprite.AddButton(ClickFunc, () => uiSprite.SetColor(colorOver), () => uiSprite.SetColor(color));
             uiTextComplex = new UI_TextComplex(uiSprite.gameObject.transform, Vector2.zero, 12, '#', text, null, null);
             uiTextComplex.SetTextColor(Color.black);
@@ -61,7 +61,7 @@ namespace HeroLib {
 
 
         public UI_Sprite(Transform parent, Sprite sprite, Vector2 anchoredPosition, Vector2 size, Color color) {
-            rectTransform = UIUtils.DrawSprite(sprite, parent, anchoredPosition, size, "UI_Sprite");
+            rectTransform = UIExt.DrawSprite(sprite, parent, anchoredPosition, size, "UI_Sprite");
             gameObject = rectTransform.gameObject;
             image = gameObject.GetComponent<Image>();
             image.color = color;

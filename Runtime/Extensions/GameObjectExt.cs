@@ -8,7 +8,7 @@ namespace HeroLib
     /// <summary>
     /// Provides functions for specialized GameObject solutions
     /// </summary>
-    public static class GameObjectExt
+    public static partial class GameObjectExt
     {
         public static void SafeRelease<T>(ref T obj) where T : UnityEngine.Object
         {

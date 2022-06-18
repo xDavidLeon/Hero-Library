@@ -7,7 +7,7 @@ namespace HeroLib
     /// <summary>
     /// Provides functions for specialized raycast solutions
     /// </summary>
-    public static class RaycastExt
+    public static partial class RaycastExt
     {
         /// <summary>
         /// Total number of hits that can happen with our pre-allocated arrays
