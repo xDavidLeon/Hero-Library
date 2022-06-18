@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/xDavidLeon/Hero-Library/compare/v1.1.0...v1.2.0) (2022-06-18)
+
+
+### Features
+
+* Added ObjectPool lib and scene reference serialization. ([8d67277](https://github.com/xDavidLeon/Hero-Library/commit/8d672777f637499e453e67eb6057c1277f96e25c))
+
 # [1.1.0](https://github.com/xDavidLeon/Hero-Library/compare/v1.0.0...v1.1.0) (2022-06-17)
 
 
