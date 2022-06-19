@@ -23,6 +23,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Create upm branch
       run: |
+        git checkout -b upm
+        git push origin upm
         git branch -d upm &> /dev/null || echo upm branch not found
         git checkout upm
         if [[ -d "Samples" ]]; then
