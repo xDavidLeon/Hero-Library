@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/xDavidLeon/Hero-Library/compare/v1.2.0...v1.3.0) (2022-06-20)
+
+
+### Features
+
+* Added UIExt.GetMouseWorldPosition using a plane. ([4ceebc3](https://github.com/xDavidLeon/Hero-Library/commit/4ceebc31957d040a298073576670e655caa582ba))
+
 # [1.2.0](https://github.com/xDavidLeon/Hero-Library/compare/v1.1.0...v1.2.0) (2022-06-18)
 
 
