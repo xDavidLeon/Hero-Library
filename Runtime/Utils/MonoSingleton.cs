@@ -39,7 +39,7 @@ namespace HeroLib
                 if (isApplicationQuit)
                 {
                     Debug.LogWarning($"Calling singleton while quitting app. Ignoring call.");
-                    return null;
+                    // return null;
                 }
 
                 if (!m_Instance)
@@ -115,6 +115,8 @@ namespace HeroLib
         // executing before this one, no need to search the object.
         protected void Awake()
         {
+            isApplicationQuit = false;
+            
             if (m_Instance == null)
             {
                 m_Instance = this as T;
