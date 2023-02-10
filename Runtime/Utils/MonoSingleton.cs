@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 /*
  * Mono Singleton for Mono Behaviours
- * David Leon Molero - 2013
+ * David Leon Molero - 2023
  */
 namespace HeroLib
 {
@@ -31,8 +31,7 @@ namespace HeroLib
             {
                 if (isApplicationQuit)
                 {
-                    Debug.LogWarning($"Calling singleton while quitting app. Ignoring call.");
-                    // return null;
+                    Debug.LogWarning($"Calling singleton while quitting app.");
                 }
 
                 if (!m_Instance)
