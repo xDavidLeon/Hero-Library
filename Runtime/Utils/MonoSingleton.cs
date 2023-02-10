@@ -11,22 +11,15 @@ namespace HeroLib
     {
         private static string FileName
         {
-            get
-            {
-                return typeof(T).Name;
-            }
+            get { return typeof(T).Name; }
         }
 
         private static string ResourcePath
         {
-            get
-            {
-                return FileName;
-            }
+            get { return FileName; }
         }
 
-        [Header("MonoSingleton Settings")]
-        public bool destroyOnLoad = true;
+        [Header("MonoSingleton Settings")] public bool destroyOnLoad = true;
         private static object _lock = new object();
         protected static T m_Instance = null;
 
@@ -86,11 +79,13 @@ namespace HeroLib
                                 // Problem during the creation, this should not happen
                                 if (m_Instance == null)
                                 {
-                                    Debug.LogError("MonoSingleton: Problem during the creation of " + typeof(T).ToString());
+                                    Debug.LogError("MonoSingleton: Problem during the creation of " +
+                                                   typeof(T).ToString());
                                 }
                                 else
                                 {
-                                    Debug.Log($"Instantiating new MonoSingleton of type {typeof(T)} : {m_Instance}", m_Instance);
+                                    Debug.Log($"Instantiating new MonoSingleton of type {typeof(T)} : {m_Instance}",
+                                        m_Instance);
                                 }
                             }
 
@@ -101,22 +96,49 @@ namespace HeroLib
                         }
                     }
                 }
+
                 return m_Instance;
             }
         }
 
-        protected virtual void OnSingletonAwake() { }
-        protected virtual void OnSingletonStart() { }
-        protected virtual void OnSingletonDestroy(bool isCurrentInstance) { }
-        protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode) { }
-        protected virtual void OnSceneUnloaded(Scene scene) { }
+        protected virtual void OnSingletonAwake()
+        {
+        }
+
+        protected virtual void OnSingletonStart()
+        {
+        }
+
+        protected virtual void OnSingletonDestroy(bool isCurrentInstance)
+        {
+        }
+
+        protected virtual void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+        }
+
+        protected virtual void OnSceneUnloaded(Scene scene)
+        {
+        }
+
+        private void OnEnable()
+        {
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+            UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneUnloaded;
+        }
+
+        private void OnDisable()
+        {
+            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
+            UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        }
 
         // If no other monobehaviour request the instance in an awake function
         // executing before this one, no need to search the object.
         protected void Awake()
         {
             isApplicationQuit = false;
-            
+
             if (m_Instance == null)
             {
                 m_Instance = this as T;
@@ -143,25 +165,9 @@ namespace HeroLib
             OnSingletonStart();
         }
 
-        /// <summary>
-        /// Returns if there is an instance of this Singleton without instantiating it
-        /// </summary>
-        public static bool Exists()
-        {
-            return m_Instance && isApplicationQuit == false;
-        }
-
-        // Make sure the instance isn't referenced anymore when the user quit, just in case.
-        protected virtual void OnApplicationQuit()
-        {
-            // #if !UNITY_EDITOR
-            m_Instance = null;
-            isApplicationQuit = true;
-            // #endif
-        }
-
         private void OnDestroy()
         {
+            isApplicationQuit = false;
             if (m_Instance == this)
             {
                 this.OnSingletonDestroy(true);
@@ -173,16 +179,19 @@ namespace HeroLib
             }
         }
 
-        private void OnEnable()
+        /// <summary>
+        /// Returns if there is an instance of this Singleton without instantiating it
+        /// </summary>
+        public static bool Exists()
         {
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
-            UnityEngine.SceneManagement.SceneManager.sceneUnloaded += OnSceneUnloaded;
+            return m_Instance && isApplicationQuit == false;
         }
 
-        private void OnDisable()
+        // Make sure the instance isn't referenced anymore when the user quit, just in case.
+        protected virtual void OnApplicationQuit()
         {
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
-            UnityEngine.SceneManagement.SceneManager.sceneUnloaded -= OnSceneUnloaded;
+            m_Instance = null;
+            isApplicationQuit = true;
         }
     }
 }
